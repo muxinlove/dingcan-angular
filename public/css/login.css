@@ -1,0 +1,69 @@
+﻿.lg_header {
+  width: 100%;
+  background: #000;
+  text-align: center;
+  height: 2.81rem;
+  line-height: 2.81rem;
+  font-size: 1.06rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.lg_form {
+  width: 100%;
+  /*height: 3.5rem;*/
+  line-height: 3.5rem;
+  background: #fff;
+  font-size: 1rem;
+  color: #000;
+  vertical-align: middle;
+  padding: 0 4%;
+}
+
+.lg_form input {
+  height: 2.5rem;
+  border: none;
+  width: 40%;
+}
+
+.lg_form button {
+  width: 6rem;
+  height: 2rem;
+
+  border: 1px solid #000;
+  font-size: 0.75rem;
+  background: none;
+}
+
+.lg_form1 {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lg_form1 input {
+  margin-left: 1rem;
+}
+
+.lg_form2 input {
+  margin-left: 1rem;
+}
+
+.lp_loginBtn {
+  width: 92%;
+  height: 2.75rem;
+  background-color: #ff2a2a;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
+  border: none;
+  margin-top: 1rem;
+}
+
+.code_disable {
+  border: #282828 2px solid;
+}
+
+.code_enable {
+  border: #ccc 2px solid;
+}

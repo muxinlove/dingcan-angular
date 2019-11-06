@@ -1,0 +1,28 @@
+﻿<link rel="stylesheet" href="css/login.css">
+
+<form name="loginForm">
+    <div class="lg_form lg_form1">
+        <span class="lg_tel">手机号</span>
+        <input type="text" class="lg_phone" placeholder="请输入您的手机号" name="phone" autocomplete="off"
+            ng-model="user.phone" ng-required="true" ng-pattern="/^1[0-9]{10}$/" />
+        <div class="errorMsg" ng-messages="loginForm.phone.$error"
+            ng-show="loginForm.phone.$dirty && loginForm.phone.$invalid">
+            <span ng-message="required" ng-bind="'手机号必须指定'"></span>
+            <span ng-message="pattern" ng-bind="'必须是手机格式'"></span>
+        </div>
+    </div>
+
+    <div class="lg_form lg_form2">
+        <span class="fl">验证码</span>
+        <input type="text" class="lg_checkCode" placeholder="请输入短信验证码" autocomplete="off" name="code"
+            ng-model="user.code" ng-required="true" ng-pattern="/^[0-9]{6}$/" />
+        <button class="lg_btn btn" ng-click="event.startTime()" ng-disabled="timing" ng-bind="btnText"></button>
+        <div class="errorMsg" ng-messages="loginForm.code.$error"
+            ng-show="loginForm.code.$dirty && loginForm.code.$invalid">
+            <span ng-message="required" ng-bind="'验证码必须指定'"></span>
+            <span ng-message="pattern" ng-bind="'必须为6位数字'"></span>
+        </div>
+    </div>
+
+    <button class="lp_loginBtn btn" ng-click="event.login()">登录</button>
+</form>

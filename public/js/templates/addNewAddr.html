@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../../css/addNewAddr.css">
+
+<div id="ana_main">
+	<p class="ana_linkman">联系人信息</p>
+	<div class="ana_fillin">
+		<ul>
+			<li>
+				<p class="fl">姓 名：</p>
+				<p class="fr">
+					<input type="text" maxlength="20" name="contactor" placeholder="请填写收货人的姓名">
+				</p>
+			</li>
+			<li>
+				<p class="fl">性 别：</p>
+				<p class="fr ana_sex">
+					<span class="ana_man">
+						<i data-sex="1"></i>男士
+					</span>
+					<span class="ana_girl">
+						<i data-sex="2"></i>女士
+					</span>
+				</p>
+			</li>
+			<li>
+				<p class="fl">手 机：</p>
+				<p class="fr">
+					<input type="text" name="mobilephone" placeholder="请填写收货人的手机号">
+				</p>
+			</li>
+		</ul>
+	</div>
+
+	<p class="ana_addr">地址信息</p>
+	<div class="ana_addrDetail">
+		<ul>
+			<li>
+				<div class="fl">学校\大厦\写字楼:</div>
+				<div class="fr">
+					<i></i>
+					<input type="text" name="address" class="ana_searchAddr" placeholder="点击选择地址">
+				</div>
+			</li>
+			<li>
+				<div class="fl">详细地址:</div>
+				<div class="fr">
+					<input type="text" class="ana_detailAddr" name="doorplate" placeholder="请填写门牌号">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<button class="ana_btn btn">保存</button>
+</div>

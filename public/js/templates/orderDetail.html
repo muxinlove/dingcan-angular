@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="../../css/orderDetail.css">
+
+<div id="od_main">
+	<div class="od_schedule">
+		<div class="od_schedule_top">
+			<dl>
+				<dt class="fl">
+					<img src="img/od_schedule.png" />
+				</dt>
+				<dd class="fl">
+					<p class="od_business">
+						已完成
+					</p>
+					<p class="od_time">预计送达：<span>12:00</span></p>
+				</dd>
+			</dl>
+		</div>
+		<div class="od_schedule_bottom">
+
+			<div class="od_schedule_font">
+				<ul>
+					<li>已付款</li>
+					<li>商家已接单</li>
+					<li>确认送达</li>
+				</ul>
+			</div>
+
+			<div class="od_schedule_font" style="display:none;">
+				<ul>
+					<li>待接单</li>
+					<li>商家已接单</li>
+					<li>确认送达</li>
+				</ul>
+			</div>
+			<div class="od_schedule_font" style="display:none;">
+				<ul>
+					<li>已付款</li>
+					<li>商家已接单</li>
+					<li>确认送达</li>
+				</ul>
+			</div>
+			<div class="od_schedule_font" style="display:none;">
+				<ul>
+					<li>申请取消</li>
+					<li>店铺处理</li>
+					<li>订单取消</li>
+				</ul>
+			</div>
+
+			<div class="od_schedule_line">
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class=""><i class="od_schedule_n od_bgg"></i></span>
+				<div class="od_line_left fl  od_bgg"></div>
+				<div class="od_line_right fr od_bgg"></div>
+			</div>
+			<div class="od_schedule_line" style="display:none;">
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class=""><i class="od_schedule_n od_bgg"></i></span>
+				<span class=""><i class="od_schedule_n od_bgg"></i></span>
+				<div class="od_line_left fl  od_bgg"></div>
+				<div class="od_line_right fr od_bgg"></div>
+			</div>
+			<div class="od_schedule_line" style="display:none;">
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<div class="od_line_left fl  od_bgg"></div>
+				<div class="od_line_right fr od_bgg"></div>
+			</div>
+			<div class="od_schedule_line" style="display:none;">
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<span class="od_schedule_y"><i class="od_schedule_n od_bgr"></i></span>
+				<div class="od_line_left fl  od_bgg"></div>
+				<div class="od_line_right fr od_bgg"></div>
+			</div>
+
+		</div>
+	</div>
+	<div class="od_detail">
+		<div class="od_detail_top">
+			<div class="od_label">订单详情</div>
+
+			<div class="od_meal_detail">
+				<div class="od_foodPic fl">
+					<img src="img/1.png" />
+				</div>
+				<div class="od_foodDetail fl">
+					<p class="fl">熏鸡肉沙拉</p>
+					<p class="fl">X1</p>
+					<p class="fr">23</p>
+				</div>
+			</div>
+
+		</div>
+		<div class="od_detail_mid">
+			<ul>
+				<li>
+					<p class="fl">配送费用</p>
+					<p class="fr">0元</p>
+				</li>
+				<li class="od_noborder">
+					<p class="fl">费用合计</p>
+					<p class="fr">23元</p>
+				</li>
+			</ul>
+		</div>
+		<div class="od_detail_bottom">
+			<p>配送地址：平西府尚硅谷it教育</p>
+			<p>收货电话：13111111111</p>
+		</div>
+	</div>
+
+	<div class="od_footer">
+		<div class="od_tel fl">
+			<a href="tel:13111111111"><img src="img/om_tel.png" /></a>
+		</div>
+
+		<div data-state="<%=data.state%>" data-id="<%=data.id%>" class="od_backOrder fl">
+			退单
+		</div>
+
+		<div class="od_sureOrder fr">
+			<button data-id="<%=data.id%>" class="od_sureOrder_btn">确认送达</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="../../css/orderConfirm.css">
+
+<div id="oc_main">
+	<div class="oc_addr">
+		<a href="addrManage.html?from=orderConfirm">
+			<p><span class="oc_userName">张三</span><span class="oc_tel">13111111111</span></p>
+			<p class="oc_userAddr">平西府尚硅谷it教育</p>
+			<i></i>
+		</a>
+	</div>
+	<div class="oc_sendTime">
+		<p class="fl">送餐时间:</p>
+		<div class="fl oc_time">
+			<select id="oc_time">
+				<option value="">未选择</option>
+				<option value="1">立即送达</option>
+			</select>
+		</div>
+		<p class="fl oc_estimate">预计1小时后送达</p>
+	</div>
+	<div class="oc_label">订单明细</div>
+	<div class="oc_orderDetail">
+		<div class="oc_food">
+			<dl>
+				<dt class="fl">
+					<img src="img/1.png" />
+				</dt>
+				<dd class="fl">
+					<p class="oc_foodName fl">熏鸡肉沙拉</p>
+					<p class="oc_foodPric fr">23元</p>
+					<p class="oc_foodNum fr">X1</p>
+				</dd>
+			</dl>
+		</div>
+
+		<div class="oc_remarks">
+			<p>备注</p>
+			<textarea class="oc_remark"></textarea>
+		</div>
+	</div>
+	<div class="oc_label">费用小计</div>
+	<div class="oc_cost">
+		<ul>
+			<li>
+				<span class="fl">配送费用</span>
+				<span class="fr oc_delivery">￥0</span>
+			</li>
+			<li>
+				<span class="fl">费用合计</span>
+				<span class="fr oc_total">￥23</span>
+			</li>
+		</ul>
+	</div>
+	<div class="oc_btn_div">
+		<button class="oc_btn oc_ybtn btn" href="javascript:">微信支付</button>
+	</div>
+</div>

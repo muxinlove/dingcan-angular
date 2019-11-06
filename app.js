@@ -4,10 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var router = require('./routes/config.js');
 
 var app = express();
+
+//app.js此文件在启动项目时只执行一次，此时可以去连接数据库
+var connection = require('./db/connection');
+connection.connect();//连接数据库
+
+//在关闭项目时，断开连接
+app.on('close', function () {
+  connection.disconnect();
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,14 +6,16 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular": "^1.5.4",
+    "angular-messages": "^1.7.8",
+    "angular-ui-router": "^1.0.22",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "mongoose": "^5.7.7",
     "morgan": "~1.9.0",
-    "angular":"^1.5.4",
-    "angular-messages":"^1.7.8",
-    "angular-ui-router":"^1.0.22",
-    "require":"^2.3.6"
+    "require": "^2.3.6"
   }
 }
