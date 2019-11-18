@@ -1,9 +1,14 @@
 <link rel="stylesheet" href="../../css/chooseCoordinate.css">
 
-<div class="cc_main">
+<div class="cc_main" id="cc_main">
+	<!--搜索框-->
+	<div class="cc_input">
+		<input type="text" ng-model="seachName">
+		<span class="cc_btn" ng-click="event.search()">搜索</span>
+	</div>
 	<div class="cc_main_map">
 		<div class="cc_map" id="cc_map">
-			<img src="img/map.png" style="width:100%;height:100%;">
+			<!-- <img src="img/map.png" style="width:100%;height:100%;"> -->
 		</div>
 		<div class="cc_icon">
 			<img src="img/position_icon2.png" />
@@ -12,30 +17,12 @@
 
 	<div class="cc_maplist">
 		<ul id="cc_searchAddrListData">
-			<li class="lp_searchLi">
+			<li class="lp_searchLi" ng-repeat="(index, addr) in mapAddrs" ng-click="event.selectAddr(addr)">
 				<p class="fl">
 					<em></em>
 				</p>
 				<p class="fl">
-					<a href="addNewAddr.html">尚硅谷it教育</a>
-				</p>
-			</li>
-
-			<li class="lp_searchLi">
-				<p class="fl">
-					<em></em>
-				</p>
-				<p class="fl">
-					<a href="addNewAddr.html">尚硅谷it教育2</a>
-				</p>
-			</li>
-
-			<li class="lp_searchLi">
-				<p class="fl">
-					<em></em>
-				</p>
-				<p class="fl">
-					<a href="addNewAddr.html">尚硅谷it教育3</a>
+					<a>{{addr.address}}</a>
 				</p>
 			</li>
 		</ul>

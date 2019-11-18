@@ -8,14 +8,15 @@ define([
     return function (key, params, method) {
       var defaultMethod = {
         'get': { method: 'GET' },
-        'post': {
+        'post': { method: 'POST' },
+        'put': { method: 'PUT' },
+        'del': { method: 'delete' },
+        'postForm': {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
           }
-        },
-        'put': { method: 'PUT' },
-        'del': { method: 'delete' }
+        }
       }
       if (!URL[key]) {
         console.error('?url.server??????: [' + key + ']?url');

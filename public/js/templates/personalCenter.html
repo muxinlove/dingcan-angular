@@ -3,21 +3,21 @@
 <div class="pc_main">
 	<div class="pc_banner">
 		<img src="img/pc_banner.png" />
-		<p class="pc_mobielPhoe">您好，13712342134</p>
+		<p class="pc_mobielPhoe">您好，{{user.phone}}</p>
 	</div>
 	<div class="pc_list">
 		<ul>
 			<li class="pc_orderList">
 				<i class="pc_myorder"></i>
-				<a href="orderList.html"><span>我的订单</span></a>
+				<a ui-sref="app.order_list"><span>我的订单</span></a>
 			</li>
 			<li class="pc_addr">
 				<i></i>
-				<a href="addrManage.html"><span>地址管理</span></a>
+				<a ui-sref="app.addr_manage"><span>地址管理</span></a>
 			</li>
 			<li class="pc_feedBack">
 				<i class="pc_opinion"></i>
-				<a href="feedback.html"><span>意见反馈</span></a>
+				<a ui-sref="app.feedback"><span>意见反馈</span></a>
 			</li>
 		</ul>
 	</div>

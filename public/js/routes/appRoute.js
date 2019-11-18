@@ -3,8 +3,9 @@
 */
 
 define([
-  'app'
-], function (app) {
+  'app',
+  'storageUtil'
+], function (app, storageUtil) {
   'use strict';
 
   return app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -20,9 +21,9 @@ define([
           url: '/login',
           templateUrl: 'js/templates/login.html',
           controller: 'LoginCtrl',
-          resolve: {
-            ctrl: loadJs(['LoginCtrl'])
-          },
+          // resolve: {
+          //   ctrl: loadJs(['LoginCtrl'])
+          // },
           pageTitle: '登 陆'
         })
       .state('app.home',
@@ -30,25 +31,48 @@ define([
           url: '/home',
           templateUrl: 'js/templates/home.html',
           controller: 'HomeCtrl',
-          pageTitle: '首 页'
+          pageTitle: '首 页',
+          resolve: {
+            banners: ['dcModel', 'buildPromise', function (dcModel, buildPromise) {
+              return buildPromise(dcModel.getBanners);
+            }],
+            data: ['dcModel', 'buildPromise', function (dcModel, buildPromise) {
+              return buildPromise(dcModel.getData);
+            }]
+          },
         })
       .state('app.add_new_addr',
         {
-          url: '/add_new_addr',
-          templateUrl: 'js/templates/addNewAddress.html',
+          url: '/add_new_addr?id',
+          templateUrl: 'js/templates/addNewAddr.html',
           controller: 'AddNewAddrCtrl',
-          pageTitle: '添加/更新地址'
+          pageTitle: '添加/更新地址',
+          resolve: {
+            addr: ['dcModel', 'buildPromise', '$stateParams', function (dcModel, buildPromise, $stateParams) {
+              if ($stateParams.id.length > 1) {
+                return buildPromise(dcModel.getAddrByAddrId, { addrId: $stateParams.id });
+              } else {
+                return null;
+              }
+            }]
+          },
         })
-      .state('app.add_manage',
+      .state('app.addr_manage',
         {
-          url: '/add_manage',
+          url: '/addr_manage',
           templateUrl: 'js/templates/addrManage.html',
           controller: 'AddrManageCtrl',
-          pageTitle: '地址管理'
+          pageTitle: '地址管理',
+          resolve: {
+            addrs: ['dcModel', 'buildPromise', function (dcModel, buildPromise) {
+              var user = storageUtil.local.getItem(storageUtil.KEYS.USER);
+              return buildPromise(dcModel.getAddrsByUserId, { userId: user._id });
+            }]
+          },
         })
       .state('app.choose_coordinate',
         {
-          url: '/choose_coordinate',
+          url: '/choose_coordinate?id',
           templateUrl: 'js/templates/chooseCoordinate.html',
           controller: 'ChooseCoordinateCtrl',
           pageTitle: '地图选择地址'
@@ -63,24 +87,40 @@ define([
       .state('app.location_addr',
         {
           url: '/location_addr',
-          templateUrl: 'js/templates/locationAdd.html',
+          templateUrl: 'js/templates/locationAddr.html',
           controller: 'LocationAddrCtrl',
-          pageTitle: '定位当前地址'
+          pageTitle: '定位当前地址',
+          resolve: {
+            addrs: ['dcModel', 'buildPromise', '$state', function (dcModel, buildPromise, $state) {
+              var user = storageUtil.local.getItem(storageUtil.KEYS.USER);
+              if (user && user._id) {
+                return buildPromise(dcModel.getAddrsByUserId, { userId: user._id });
+              } else {
+                $state.go('app.login');
+                return false;
+              }
+            }]
+          }
         })
 
       .state('app.order_confirm',
         {
           url: '/order_confirm',
           templateUrl: 'js/templates/orderConfirm.html',
-          controller: 'orderConfirmCtrl',
-          pageTitle: '订单确认'
+          controller: 'OrderConfirmCtrl',
+          pageTitle: '订单确认',
         })
       .state('app.order_detail',
         {
-          url: '/order_detail',
+          url: '/order_detail?id',
           templateUrl: 'js/templates/orderDetail.html',
           controller: 'OrderDetailCtrl',
-          pageTitle: '订单详情'
+          pageTitle: '订单详情',
+          resolve: {
+            order: ['dcModel', 'buildPromise', '$stateParams', function (dcModel, buildPromise, $stateParams) {
+              return buildPromise(dcModel.getOrderById, { id: $stateParams.id });
+            }]
+          }
         })
       .state('app.order_list',
         {

@@ -1,139 +1,112 @@
 <link rel="stylesheet" href="../../css/home.css">
+<style>
+	.swiper-container {
+		width: 100%;
+		height: 100%;
+	}
 
-<!-- 头部 #start -->
-<header>
-	<div class="addr">
-		<span class="icon icon-addr"></span>
-		<a href="locationAddr.html" id="address">炊事班</a>
-	</div>
-	<div class="user">
-		<span class="icon icon-user"></span>
-		<a ui-sref="app.personal_center">个人中心</a>
-	</div>
-</header>
-<!-- 头部 #end -->
+	.swiper-slide {
+		height: auto;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+</style>
 
-<!-- 轮播 #start -->
-<div class="banner">
-	<div class="swiper-container" id="bannerSwiper">
-		<div class="swiper-wrapper" id="slides">
-			<div class="swiper-slide">
-				<a href="#">
-					<img src="img/bar1.jpg" />
-				</a>
-			</div>
-			<div class="swiper-slide">
-				<a href="#">
-					<img src="img/bar2.png" />
-				</a>
+
+<div id="homeDiv">
+	<!-- 头部 #start -->
+	<header>
+		<div class="addr">
+			<span class="icon icon-addr"></span>
+			<a ui-sref="app.location_addr" id="address">{{address.name}}</a>
+		</div>
+		<div class="user">
+			<span class="icon icon-user"></span>
+			<a ui-sref="app.personal_center">个人中心</a>
+		</div>
+	</header>
+	<!-- 头部 #end -->
+
+	<!-- 轮播 #start -->
+	<div class="banner">
+		<div class="swiper-container" id="bannerSwiper">
+			<div class="swiper-wrapper" id="slides">
+				<div class="swiper-slide" ng-repeat="banner in banners">
+					<a href="#">
+						<img src="img/default.jpg" ng-src="{{banner.img_src}}" />
+					</a>
+				</div>
 			</div>
 		</div>
+		<!-- Add Pagination -->
+		<div class="swiper-pagination"></div>
 	</div>
-	<!-- Add Pagination -->
-	<div class="swiper-pagination"></div>
-</div>
-<!-- 轮播 #end -->
+	<!-- 轮播 #end -->
 
-<!-- 菜品列表 #start -->
-<div class="wrap meals">
-	<div id="info">
-		<ul>
-			<li>
-				<div class="meal-item">
-					<a class="img meal-img" href="javascript:">
-						<img src="img/default.jpg" />
-					</a>
-					<div class="meal-name">熏鸡肉沙拉</div>
-					<div class="sales">月售211份</div>
-					<div class="buy">
-						<div class="price">
-							&yen;
-							<span class="ml2 f150 fb">23</span>
-							<span>
-								<s>&yen;56</s>
-							</span>
-						</div>
-						<div class="option-cart">
-							<div class="btn-cart in fr">
-								<a class="jian"></a>
-								<span class="count">0</span>
-								<a class="jia"></a>
+	<!-- 菜品列表 #start -->
+	<div class="wrap meals">
+		<div id="info">
+			<ul>
+				<li ng-repeat="(index, meal) in meals">
+					<div class="meal-item">
+						<a class="img meal-img" href="javascript:">
+							<img src="img/default.jpg" ng-src="{{meal.picture}}" />
+						</a>
+						<div class="meal-name">{{meal.mealName}}</div>
+						<div class="sales">月售{{meal.sales}}份</div>
+						<div class="buy">
+							<div class="price">
+								&yen;<span class="ml2 f150 fb">{{meal.price}}</span>
+								<span>
+									<s>&yen;{{meal.originalPrice}}</s>
+								</span>
 							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="meal-item">
-					<a class="img meal-img" href="javascript:">
-						<img src="img/default.jpg" />
-					</a>
-					<div class="meal-name">熏鸡肉沙拉</div>
-					<div class="sales">月售211份</div>
-					<div class="buy">
-						<div class="price">
-							&yen;
-							<span class="ml2 f150 fb">23</span>
-							<span>
-								<s>&yen;56</s>
-							</span>
-						</div>
-						<div class="option-cart">
-							<div class="btn-cart in fr">
-								<a class="jian"></a>
-								<span class="count">0</span>
-								<a class="jia"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<div class="clearfix"></div>
-		</ul>
-	</div>
-</div>
-<!-- 菜品列表 #end -->
-
-<!-- 购物车 #start -->
-<footer>
-	<div class="blurrycontent"></div>
-	<div id="cart" style="position:relative">
-		<style>
-			.swiper-container {
-				width: 100%;
-				height: 100%;
-			}
-
-			.swiper-slide {
-				height: auto;
-				-webkit-box-sizing: border-box;
-				box-sizing: border-box;
-			}
-		</style>
-		<!-- 购物车图标-->
-		<div class="icon-cart-box">
-			<div class="cart-num" id="total_count">1</div>
-			<div class="icon-cart">
-				<a class="btn-cart-pop">
-				</a>
-			</div>
-		</div>
-		<div class="table w100 cartItems" id="cartItems">
-			<div class="swiper-container" id="cartSwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<div class="table w100">
-							<div class="row">
-								<div class="cell">熏鸡肉沙拉</div>
-								<div class="cell">
-									&yen;<span class="ml2 f120 fb">23</span>
+							<div class="option-cart">
+								<div class="btn-cart in fr" ng-class="{incart : meal.count > 0}">
+									<a class="jian" ng-click="event.updateMealCount(false, meal, $event)"></a>
+									<span class="count">{{meal.count}}</span>
+									<a class="jia" ng-click="event.updateMealCount(true, meal, $event)"></a>
+									<!-- <a class="jia-fly" ng-click="event.updateMealCount(true, meal, $event)"></a> -->
 								</div>
-								<div class="cell tr">
-									<div class="option-cart fr">
-										<div class="btn-cart in fr">
-											<a class="jian cart-num-btn"></a>
-											<span class="count ">1</span>
-											<a class="jia cart-num-btn"></a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<div class="clearfix"></div>
+			</ul>
+		</div>
+	</div>
+	<!-- 菜品列表 #end -->
+
+	<!-- 购物车 #start -->
+	<footer>
+		<div class="blurrycontent"></div>
+		<div id="cart" style="position:relative">
+			<!-- 购物车图标-->
+			<div class="icon-cart-box" ng-click="event.showCart()">
+				<div class="cart-num" id="total_count">{{cart.totalCount}}</div>
+				<div class="icon-cart">
+					<a class="btn-cart-pop">
+					</a>
+				</div>
+			</div>
+			<div class="table w100 cartItems" id="cartItems" ng-show="isOpen && cart.totalCount">
+				<div class="swiper-container" id="cartSwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="table w100">
+								<div class="row" ng-repeat="meal in cart.meals">
+									<div class="cell">{{meal.mealName}}</div>
+									<div class="cell">
+										&yen;<span class="ml2 f120 fb">{{meal.price}}</span>
+									</div>
+									<div class="cell tr">
+										<div class="option-cart fr">
+											<div class="btn-cart in fr" ng-class="{incart : meal.count > 0}">
+												<a class="jian cart-num-btn" ng-click="event.updateMealCount(false, meal)"></a>
+												<span class="count ">{{meal.count}}</span>
+												<a class="jia cart-num-btn" ng-click="event.updateMealCount(true, meal)"></a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -142,19 +115,19 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Add Scroll Bar -->
-		<div class="swiper-scrollbar"></div>
+			<!-- Add Scroll Bar -->
+			<div class="swiper-scrollbar"></div>
 
-		<div class="bottom">
-			<div class="table w100">
-				<div class="cell total tc fb f120">
-					共计：&yen;<span id="total_price">0</span>元</div>
-				<div class="cell tr">
-					<a href="orderConfirm.html" class="btn-toPay">选好了</a>
+			<div class="bottom">
+				<div class="table w100">
+					<div class="cell total tc fb f120">
+						共计：&yen;<span id="total_price">{{cart.totalPrice}}</span>元</div>
+					<div class="cell tr">
+						<a class="btn-toPay" ng-class="{able:cart.totalCount>0}" ng-click="event.toOrderConfirmUI()">选好了</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</footer>
-<!-- 购物车 #end -->
+	</footer>
+	<!-- 购物车 #end -->
+</div>

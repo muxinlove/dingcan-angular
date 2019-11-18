@@ -7,13 +7,29 @@
   height: 100%;
 }
 
-.oc_addr {
+.oc_addr_box {
   width: 97%;
   background-color: #fff;
   margin: 0 auto;
   padding: 2% 10px;
   /*margin-top: 5px;*/
   border-bottom: 1px solid #f0f0f0;
+}
+.oc_addr{
+  display:flex;
+      align-items: center;
+    justify-content: space-between;
+}
+.oc_addr .oc_addr_left{
+
+}
+.oc_addr .oc_addr_right{
+   width: 0.6rem;
+  height: 1.06rem;
+  background: url(../img/om_left.png) no-repeat;
+  background-size: 100%;
+  display: block;
+  flex-shrink: 0;
 }
 
 .oc_addr p {
@@ -40,17 +56,6 @@
 
 .oc_addr p:nth-child(1) {
   line-height: 1.5rem;
-}
-
-.oc_addr i {
-  width: 0.6rem;
-  height: 1.06rem;
-  background: url(../img/om_left.png) no-repeat;
-  background-size: 100%;
-  display: block;
-  position: absolute;
-  right: 1.25rem;
-  top: 1.96rem;
 }
 
 .oc_orderDetail {

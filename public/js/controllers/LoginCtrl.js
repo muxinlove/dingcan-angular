@@ -1,8 +1,9 @@
 ﻿define([
-  'app'
-], function (app) {
+  'app',
+  'storageUtil'
+], function (app, storageUtil) {
   'use strict';
-  app.controller('LoginCtrl', ['$scope', '$rootScope', '$interval', 'loginModel', function ($scope, $rootScope, $interval, loginModel) {
+  app.controller('LoginCtrl', ['$scope', '$rootScope', '$interval', 'dcModel', 'toastr', '$state', '$timeout', function ($scope, $rootScope, $interval, dcModel, toastr, $state, $timeout) {
     //初始化数据
     $scope.btnText = '获取验证码';
     $scope.timing = false; // 是否正在计时
@@ -34,9 +35,7 @@
         }, 1000);
 
         // 请求验证码
-        loginModel.sendcode.get({ phone: $scope.user.phone }, function (result) {
-          console.log(result)
-        })
+        dcModel.sendcode.get({ phone: $scope.user.phone });
       },
       login: function () {
         // 校验表单
@@ -45,6 +44,21 @@
           return;
         }
         // 提交表单
+        dcModel.login.post({
+          phone: $scope.user.phone,
+          code: $scope.user.code
+        }, function (data) {
+          if (data.code == 0) {
+            var user = data.data;
+            toastr.success(user.phone + '登陆成功');
+            // user存储到localStorage中
+            storageUtil.local.setItem(storageUtil.KEYS.USER, user);
+            //跳转到home
+            $timeout(function () {
+              $state.go('app.home');
+            }, 1000);
+          }
+        });
       }
     }
 

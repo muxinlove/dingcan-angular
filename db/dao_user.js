@@ -17,7 +17,7 @@ var mongoose = connection.mongoose;
 
 // 创建模式
 var userSchema = new mongoose.Schema({
-  phone: String
+  "phone": String
 });
 
 //model

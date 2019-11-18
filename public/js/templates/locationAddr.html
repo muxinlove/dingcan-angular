@@ -1,39 +1,41 @@
 <link rel="stylesheet" href="../../css/locationAddr.css">
 
-<div class="lp_search">
+<div class="lp_search" id="locDiv">
 	<div class=" table w100 ">
 		<div class="cell" style="width:1.5rem;"> <i></i>
 		</div>
 		<div class="cell">
-			<input type="text" id="search_addr" placeholder="请输入所在写字楼/小区/学校等" />
+			<input type="text" id="search_addr" placeholder="请输入所在写字楼/小区/学校等" ng-model="searchText"
+				ng-change="event.search()" />
 		</div>
-		<div class="cell tr">
+		<div class="cell tr" ng-show="showSearch" ng-click="event.cancelSearch()">
 			<a href="javascript:" id="cancel" class="btn">取消</a>
 		</div>
 	</div>
 </div>
 
-<div class="lp_searchAddrList">
+<div class="lp_searchAddrList" ng-show="showSearch">
 	<ul id="lp_searchAddrListData">
-		<li class="addrItem">
+		<li class="addrItem" ng-repeat="searchAddr in searchAddrs" ng-click="event.toHome(searchAddr)">
+			{{searchAddr.name}}
 		</li>
 	</ul>
 </div>
 
-<div class="addr-wrap" id="info">
+<div class="addr-wrap" id="info" ng-hide="showSearch">
 	<p class="p-label">当前位置</p>
 	<div class="addr cur-addr table w100">
-		<div class="cell addrItem"></div>
-		<div class="lp_position cell tr">
-			<a id="doPos" href="javascript:"><i class="posing"></i>重新定位</a>
+		<div class="cell addrItem" ng-click="event.toHome(currentAddr)">{{currentAddr.name}}</div>
+		<div class="lp_position cell tr" ng-click="event.relocation()">
+			<a id="doPos" href="javascript:"><i ng-class="{posing:isPosing}"></i>重新定位</a>
 		</div>
 	</div>
 	<p class="p-label">附近地址</p>
 	<div class="addr">
 		<ul>
-			<li class="addrItem"></li>
+			<li class="addrItem" ng-repeat="aroundAddr in aroundAddrs" ng-click="event.toHome(aroundAddr)">{{aroundAddr.address}}</li>
 			<li style="position:relative;">
-				<a style="display:block;width:100%;height:100%;" href="chooseCoordinate.html">
+				<a style="display:block;width:100%;height:100%;" ui-sref="app.choose_coordinate">
 					更多地址 <span class="fr nav-left" style="position:absolute;right:0;top:50%;margin-top:-5px;"></span>
 				</a>
 			</li>
@@ -42,9 +44,9 @@
 	<p class="p-label">收货地址</p>
 	<div class="addr">
 		<ul>
-			<li class="addrItem">
-				<p class="user"></p>
-				<p class="user-addr"></p>
+			<li class="addrItem" ng-repeat="addr in addrs" ng-click="event.toHome(addr)">
+				<p class="user">{{addr.contactor}}</p>
+				<p class="user-addr">{{addr.address}}</p>
 			</li>
 		</ul>
 	</div>

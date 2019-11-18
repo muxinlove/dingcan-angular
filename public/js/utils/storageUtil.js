@@ -7,8 +7,14 @@
  */
 define(function () {
   return {
-    KEY: {
-      USER: "_dingcan_user_"
+    KEYS: {
+      USER: "_dingcan_user_",
+      INPUT_ADDR: "_dingcan_input_addr_",
+      MAP_ADDR: "_dingcan_map_addr_",
+      CART: "_dingcan_cart_",
+      CURRENT_ADDR:'_dingcan_current_addr_',
+      LOC_ADDR:'_dingcan_loc_addr_',
+      ORDER_ADDR:'_dingcan_order_addr_',
     },
     session: {
       setItem: function (key, value) {

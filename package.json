@@ -3,17 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "auto": "supervisor ./bin/www"
   },
   "dependencies": {
     "angular": "^1.5.4",
     "angular-messages": "^1.7.8",
+    "angular-toastr": "^2.1.1",
     "angular-ui-router": "^1.0.22",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.7",
     "morgan": "~1.9.0",
     "require": "^2.3.6"

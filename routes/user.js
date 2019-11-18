@@ -57,6 +57,22 @@ module.exports = function (router) {
     })
   })
 
+  /**
+   * 意见反馈
+   */
+  router.post('/feedback', function (req, res, next) {
+    // 获取数据
+    var params = req.body;
+
+    // 新增
+    db.addFeedback(params, function (feedback) {
+      res.send({
+        code: 0,
+        data: feedback
+      })
+    })
+  })
+
   function randomCode(length) {
     var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     var result = ""; //统一改名: alt + shift + R

@@ -7,24 +7,25 @@
 			<li>
 				<p class="fl">姓 名：</p>
 				<p class="fr">
-					<input type="text" maxlength="20" name="contactor" placeholder="请填写收货人的姓名">
+					<input type="text" maxlength="20" name="contactor" placeholder="请填写收货人的姓名"
+					ng-model="address.contactor">
 				</p>
 			</li>
 			<li>
 				<p class="fl">性 别：</p>
 				<p class="fr ana_sex">
-					<span class="ana_man">
-						<i data-sex="1"></i>男士
+					<span class="ana_man" ng-click="event.setSex(1)">
+						<i data-sex="1" ng-class="{chooseBg:address.sex == 1}"></i>男士
 					</span>
-					<span class="ana_girl">
-						<i data-sex="2"></i>女士
+					<span class="ana_girl" ng-click="event.setSex(2)">
+						<i data-sex="2" ng-class="{chooseBg:address.sex == 2}"></i>女士
 					</span>
 				</p>
 			</li>
 			<li>
 				<p class="fl">手 机：</p>
 				<p class="fr">
-					<input type="text" name="mobilephone" placeholder="请填写收货人的手机号">
+					<input type="text" name="mobilephone" placeholder="请填写收货人的手机号" ng-model="address.phone">
 				</p>
 			</li>
 		</ul>
@@ -37,16 +38,16 @@
 				<div class="fl">学校\大厦\写字楼:</div>
 				<div class="fr">
 					<i></i>
-					<input type="text" name="address" class="ana_searchAddr" placeholder="点击选择地址">
+					<input type="text" name="address" class="ana_searchAddr" placeholder="点击选择地址" ng-click="event.toAddrMap()" ng-model="address.address">
 				</div>
 			</li>
 			<li>
 				<div class="fl">详细地址:</div>
 				<div class="fr">
-					<input type="text" class="ana_detailAddr" name="doorplate" placeholder="请填写门牌号">
+					<input type="text" class="ana_detailAddr" name="doorplate" placeholder="请填写门牌号" ng-model="address.doorplate">
 				</div>
 			</li>
 		</ul>
 	</div>
-	<button class="ana_btn btn">保存</button>
+	<button class="ana_btn btn" ng-click="event.save()">保存</button>
 </div>
