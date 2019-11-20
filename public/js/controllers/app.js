@@ -1,7 +1,7 @@
 /**
  * app 应用模块
  */
-define(['angular'], (angular) => {
+define(['angular'], function (angular) {
   angular.module('moduleList', [
     'ngAnimate',
     'ngMessages',
@@ -13,7 +13,7 @@ define(['angular'], (angular) => {
   ])
   var app = angular.module('dcApp', ['moduleList']);
 
-  app.run(($rootScope, $transitions, $state) => {
+  app.run(function ($rootScope, $transitions, $state) {
     // $stateChangeCancel -> TransitionService.onStart
     // $stateChangeError -> TransitionService.onStart and Transition.promise, or Transition.onError
     // $stateChangeStart -> TransitionService.onStart
@@ -24,7 +24,7 @@ define(['angular'], (angular) => {
 
     // })
 
-    $transitions.onSuccess({}, (transition) => {
+    $transitions.onSuccess({}, function (transition) {
       $rootScope.appTitle = $state.current.pageTitle;
     })
   });
@@ -71,7 +71,7 @@ define(['angular'], (angular) => {
         return config;
       },
       response: function (config) {
-        if(config.data.code==1){
+        if (config.data.code == 1) {
           showError(config.data.msg || '接口返回错误');
         }
         return config;

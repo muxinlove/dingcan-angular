@@ -49,7 +49,7 @@ define([
           pageTitle: '添加/更新地址',
           resolve: {
             addr: ['dcModel', 'buildPromise', '$stateParams', function (dcModel, buildPromise, $stateParams) {
-              if ($stateParams.id.length > 1) {
+              if ($stateParams.id && $stateParams.id.length > 1) {
                 return buildPromise(dcModel.getAddrByAddrId, { addrId: $stateParams.id });
               } else {
                 return null;
@@ -127,7 +127,13 @@ define([
           url: '/order_list',
           templateUrl: 'js/templates/orderList.html',
           controller: 'OrderListCtrl',
-          pageTitle: '订单列表'
+          pageTitle: '订单列表',
+          resolve: {
+            orders: ['dcModel', 'buildPromise', function (dcModel, buildPromise) {
+              var user = storageUtil.local.getItem(storageUtil.KEYS.USER);
+              return buildPromise(dcModel.getOrdersByUserId, { id: user._id });
+            }]
+          }
         })
       .state('app.personal_center',
         {

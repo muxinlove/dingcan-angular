@@ -43,10 +43,15 @@ function addOrder(order, cb) {
 function getOrderById(id, callback) {
   OrderModel.findOne({ _id: id }, callback);
 }
+// 获取订单列表
+function getOrdersByUserId(id, callback) {
+  OrderModel.find({ user_id: id }, callback);
+}
 
 module.exports = {
   addOrder: addOrder,
-  getOrderById: getOrderById
+  getOrderById: getOrderById,
+  getOrdersByUserId: getOrdersByUserId
 }
 
 // addOrder({

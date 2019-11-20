@@ -143,6 +143,16 @@ module.exports = {
         cb(order);
       }
     })
+  },
+  // 根据用户id查询订单列表
+  getOrdersByUserId:function(id, cb){
+    dao_order.getOrdersByUserId(id, function (err, order) {
+      if (err) {
+        throw err;
+      } else {
+        cb(order);
+      }
+    })
   }
 
 }

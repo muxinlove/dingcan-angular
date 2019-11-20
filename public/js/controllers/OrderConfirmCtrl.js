@@ -33,7 +33,7 @@ define([
     /*
      初始化时间   value="2019-11-18 11:55" text="10:55"
     */
-    initTimes();
+    initTimes2();
 
     function initTimes() {
       var times = [];
@@ -62,6 +62,54 @@ define([
         })
       }
       $scope.times = times;
+    }
+
+    /*
+     手动拼日期时间
+    */
+    function initTimes2() {
+      var times = [];   //{value:'2016-11-9 12:10', text:'11:10'}
+
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      var hour = date.getHours();
+      var minite = date.getMinutes();
+      //添加第一个
+      times.push({
+        value: year + '/' + month + '/' + day + ' ' + (hour + 1) + ':' + minite,
+        text: '立即配送'
+      })
+
+      //添加后面的多个
+      var startTime = date.getTime();
+      var endTime = new Date(year + '/' + month + '/' + day + ' 22:00').getTime();
+      var intervalTime = 15;//单位是min
+      alert(startTime);
+      alert(endTime);
+      while (startTime <= endTime) {
+        //更新startTime
+        startTime += intervalTime * 60 * 1000;
+        //如果超过了结束循环
+        if (startTime > endTime) {
+          break;
+        }
+
+        minite += intervalTime;
+        if (minite >= 60) {
+          hour++;
+          minite -= 60;
+        }
+        times.push({
+          value: year + '-' + month + '-' + day + ' ' + (hour + 1) + ':' + minite,
+          text: hour + ':' + minite
+        })
+      }
+
+      $scope.times = times;
+      alert(JSON.stringify(times));
+
     }
 
     // 读取购物车数据

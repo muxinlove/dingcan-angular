@@ -23,7 +23,10 @@
 }
 
 #om_main .om_orderNum {
-  font-size: 1rem;
+  font-size: 0.6rem;
+}
+.om_orderDetails_top_orderState {
+  font-size: 0.6rem;
 }
 
 #om_main .om_orderDetails_top {

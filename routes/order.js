@@ -36,6 +36,25 @@ module.exports = function (router) {
   })
 
   /**
+  * 订单列表
+  */
+  router.get('/order/list', function (req, res, next) {
+    var id = req.query.id;
+    db.getOrdersByUserId(id, function (orders) {
+      if(orders && orders.length){
+        orders.forEach(function (order){
+          order._doc.arrive_time = moment(order.arrive_time).format('HH:mm');
+          order._doc.detail = JSON.parse(order._doc.detail);
+        })
+      }
+      res.send({
+        code: 0,
+        data: orders
+      })
+    })
+  })
+
+  /**
   * 获取订单详情
   */
   router.get('/order/detail', function (req, res, next) {
@@ -76,7 +95,7 @@ module.exports = function (router) {
       //给对象设置属性   需要写上 _doc
       order._doc.stateText = stateText;
       order._doc.arrive_time = moment(order.arrive_time).format('HH:mm')
-      
+
       res.send({
         code: 0,
         data: order

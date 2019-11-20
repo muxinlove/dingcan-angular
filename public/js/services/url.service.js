@@ -28,6 +28,7 @@ define([
       'getDefaultAddress': buildUrl('order/getDefaultAddress'),
       'addOrder': buildUrl('order/createOrder'),
       'getOrderById': buildUrl('order/detail'),
+      'getOrdersByUserId': buildUrl('order/list'),
     };
 
     function buildUrl(url) {

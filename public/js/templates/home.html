@@ -103,9 +103,9 @@
 									<div class="cell tr">
 										<div class="option-cart fr">
 											<div class="btn-cart in fr" ng-class="{incart : meal.count > 0}">
-												<a class="jian cart-num-btn" ng-click="event.updateMealCount(false, meal)"></a>
+												<a class="jian cart-num-btn" ng-click="event.updateMealCount(false, meal, $event)"></a>
 												<span class="count ">{{meal.count}}</span>
-												<a class="jia cart-num-btn" ng-click="event.updateMealCount(true, meal)"></a>
+												<a class="jia cart-num-btn" ng-click="event.updateMealCount(true, meal, $event)"></a>
 											</div>
 										</div>
 									</div>

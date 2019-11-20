@@ -3,6 +3,7 @@
  */
 
 var db = require('../db/db.js');
+var sms_util = require('../utils/sms_util.js');
 
 module.exports = function (router) {
 
@@ -15,13 +16,17 @@ module.exports = function (router) {
     // 获取数据
     var phone = req.query.phone;
     // 生成随机6位码
-    var code = randomCode(6);
+    var code = sms_util.randomCode(6);
     // 发给指定的手机
     console.log(`向${phone}发送验证码短信:${code}`);
-    // 保存验证码
-    users[phone] = code;
-    //返回数据
-    res.send({ "code": 0 })
+    sms_util.sendCode(phone, code, function (success) {
+      if (success) {
+        // 保存验证码
+        users[phone] = code;
+        //返回数据
+        res.send({ "code": 0 })
+      }
+    })
   })
 
   /**
@@ -73,13 +78,4 @@ module.exports = function (router) {
     })
   })
 
-  function randomCode(length) {
-    var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    var result = ""; //统一改名: alt + shift + R
-    for (var i = 0; i < length; i++) {
-      var index = Math.ceil(Math.random() * 9);
-      result += chars[index];
-    }
-    return result;
-  }
 }

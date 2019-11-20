@@ -24,6 +24,7 @@ define([
       'getDefaultAddress':buildModel('getDefaultAddress'),
       'getOrderById': buildModel('getOrderById'),
       'addOrder': buildModel('addOrder'),
+      'getOrdersByUserId': buildModel('getOrdersByUserId'),
     }
   }
 });
